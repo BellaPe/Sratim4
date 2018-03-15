@@ -16,7 +16,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/MovieName"
+            android:id="@+id/subject"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
             >
         <EditText
-            android:id="@+id/Body"
+            android:id="@+id/body"
             android:layout_width="250dp"
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
@@ -47,12 +47,12 @@
 
 
         <EditText
-            android:id="@+id/WriteURL"
+            android:id="@+id/url"
             android:layout_width="250dp"
             android:layout_height="40dp"
             />
         <Button
-            android:id="@+id/Show"
+            android:id="@+id/show"
             android:layout_width="50dp"
             android:layout_height="30dp"
             android:text="show"

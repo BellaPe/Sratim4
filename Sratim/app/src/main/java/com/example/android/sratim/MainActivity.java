@@ -1,29 +1,28 @@
 package com.example.android.sratim;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
-    ListAdapter MyAdapter;
-    ListView MyListView;
     private MenuItem Exit;
     private MenuItem Delete;
     private MenuItem Manual;
     private MenuItem Internet;
     private MenuItem Group;
     private MenuItem Group2;
+    private Database database;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);}
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onCreateOptionsMenu(Menu menu) {
             MenuInflater menuInflater = getMenuInflater();
             menuInflater.inflate(R.menu.optionmenu, menu);
+            database = new Database();
             //Menu items
             Group = menu.findItem(R.id.MainMenu);
             Group2 = menu.findItem(R.id.EditMenu);
@@ -70,8 +70,12 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
+
+
                 return true;
         }
+
+    ArrayList<Movie> movies = database.getAllMovies();
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -79,20 +83,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&&resultCode==RESULT_OK)
         {
+            Movie movie = (Movie) data.getSerializableExtra("movie");
+            movies.add(movie);
+            Database.addMovie(movie);
             Toast.makeText(MainActivity.this, "Movie added",
                     Toast.LENGTH_LONG).show();
 
         }
     }
-        //final Sratim [] movies = {};
-
-       // MyAdapter = new ArrayAdapter<Sratim>(this, android.R.layout.simple_list_item_1, movies);
 
 
-      //  MyListView = (ListView) findViewById(R.id.MyListView);
-
-        //adding the ListAdapter that we created to the ListView
-     //   MyListView.setAdapter(MyAdapter);
 
         //adding event listener to the ListView
      //   MyListView.setOnItemClickListener(

@@ -1,21 +1,26 @@
 package com.example.android.sratim;
 
-import java.net.URI;
+import java.io.Serializable;
 
 /**
  * Created by Android on 14/03/2018.
  */
 
-public class Movie {
-    private int _id;
+public class Movie implements Serializable {
+    private  int _id;
     private String subject;
     private String body;
     private String url;
-    public Movie(int id, String subject, String body, String url){
-        this._id=id;
+    public Movie(String subject, String body, String url){
         this.body=body;
         this.subject=subject;
         this.url=url;
+    }
+    public Movie(int id, String subject, String body, String url){
+        this.body=body;
+        this.subject=subject;
+        this.url=url;
+        this._id=id;
     }
     public int get_id() {
         return _id;
@@ -41,5 +46,6 @@ public class Movie {
     public void setUrl(String url) {
         this.url = url;
     }
+
 
 }

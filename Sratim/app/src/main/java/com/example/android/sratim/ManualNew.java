@@ -1,25 +1,33 @@
 package com.example.android.sratim;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class ManualNew extends AppCompatActivity {
     private Button OK;
     private Button Cancel;
+    private EditText subject;
+    private EditText body;
+    private EditText url;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manual_new);
 
+        subject = (EditText) findViewById(R.id.subject);
+        body = (EditText) findViewById(R.id.body);
+        url = (EditText) findViewById(R.id.url);
         OK = (Button) findViewById((R.id.Ok));
         OK.setText("OK");
         Cancel = (Button) findViewById((R.id.Cancel));
-       Cancel.setText("Cancel");
+        Cancel.setText("Cancel");
+
         View.OnClickListener myOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,9 +40,11 @@ public class ManualNew extends AppCompatActivity {
 
     public void Result(View view) {
         String Click = (String) ((Button) view).getText();
+        Movie addedMovie = new Movie(subject.getText().toString(), body.getText().toString(), url.getText().toString());
         switch (Click) {
             case "OK": {
                 Intent returnIntent = getIntent();
+                returnIntent.putExtra("movie", addedMovie);
                 setResult(RESULT_OK, returnIntent);
                 finish();
             }
